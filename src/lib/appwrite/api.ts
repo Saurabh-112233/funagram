@@ -3,6 +3,7 @@ import { INewUser } from "@/types";
 import { account, appwriteConfig, avatars, databases } from "./config";
 
 
+
 export async function createUserAccount(user:INewUser) {
     try {
         const newAccount = await account.create(
@@ -69,6 +70,15 @@ export async function getCurrentUser() {
         )
         if(!currUser) throw Error;
         return currUser.documents[0];
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export async function signOutAccount(){
+    try {
+        const session = await account.deleteSession("current")
+        return session
     } catch (error) {
         console.log(error)
     }
