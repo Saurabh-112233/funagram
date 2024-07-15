@@ -59,22 +59,35 @@ export async function signInAccount(user:{email:string; password:string}) {
         console.log(error)
     }
 }
-
+export async function getAccount() {
+    try {
+      const currentAccount = await account.get();
+  
+      return currentAccount;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 export async function getCurrentUser() {
     try {
-        const currAccount = await account.get();
-        if(!currAccount) throw Error;
-        const currUser = await databases.listDocuments(
-            appwriteConfig.databaseId,
-            appwriteConfig.userCollectionId,
-            [Query.equal("accountId",currAccount.$id)]
-        )
-        if(!currUser) throw Error;
-        return currUser.documents[0];
+      const currentAccount = await getAccount();
+  
+      if (!currentAccount) throw Error;
+  
+      const currentUser = await databases.listDocuments(
+        appwriteConfig.databaseId,
+        appwriteConfig.userCollectionId,
+        [Query.equal("accountId", currentAccount.$id)]
+      );
+  
+      if (!currentUser) throw Error;
+  
+      return currentUser.documents[0];
     } catch (error) {
-        console.log(error)
+      console.log(error);
+      return null;
     }
-}
+  }
 
 export async function signOutAccount(){
     try {
@@ -191,25 +204,25 @@ export async function likePost(postId: string, likesArray: string[]) {
     }
 }
 
-export async function savePost(postId: string, userId: string) {
+export async function savePost(userId: string, postId: string) {
     try {
       const updatedPost = await databases.createDocument(
         appwriteConfig.databaseId,
         appwriteConfig.savesCollectionId,
         ID.unique(),
         {
-            user:userId,
-            post:postId
+          user: userId,
+          post: postId,
         }
       );
   
       if (!updatedPost) throw Error;
-  
+    //   console.log("save"<" ");
       return updatedPost;
     } catch (error) {
       console.log(error);
     }
-}
+  }
 
 export async function deleteSavedPost(savedRecordId:string) {
     try {
