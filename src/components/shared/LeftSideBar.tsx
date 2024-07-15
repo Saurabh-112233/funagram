@@ -10,7 +10,7 @@ const LeftSideBar = () => {
   const {mutate: signOut, isSuccess} = useSignOutAccount();
   const navigate = useNavigate();
   const {user} = useUserContext();
-  const {pathName} = useLocation()
+  const {pathname} = useLocation()
 
   useEffect(()=>{
     if(isSuccess) navigate(0);
@@ -45,12 +45,12 @@ const LeftSideBar = () => {
 
           <ul className='flex flex-col gap-6 '>
               {sidebarLinks.map((link:INavLink)=>{
-                const isActive = (pathName === link.route);
+                const isActive = pathname === link.route;
                 return(
                   <li key={link.label}
-                    className={`leftsidebar-link ${isActive && 'bg-primary-500'} group`}
+                    className={`leftsidebar-link group ${isActive && 'bg-primary-500'}`}
                   >
-                    <NavLink to={link.label} className="flex gap-4 items-center p-4">
+                    <NavLink to={link.route} className="flex gap-4 items-center p-4">
                       <img src={link.imgURL} alt={link.label} className={`group-hover:invert-white ${isActive && 'invert-white'}`}/>
                       {link.label}
                     </NavLink>
