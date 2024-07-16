@@ -1,4 +1,4 @@
-import {ID, Query} from 'appwrite'
+import {ID, ImageGravity, Query} from 'appwrite'
 import { INewPost, INewUser, IUpdatePost, IUpdateUser } from "@/types";
 import { account, appwriteConfig, avatars, databases, storage } from "./config";
 // import { string } from 'zod';
@@ -154,7 +154,7 @@ export function getFilePreview(fileId:string) {
             fileId,
             2000,
             2000,
-            "top",
+            "top" as ImageGravity,
             100,
         )
         return fileUrl;
@@ -338,6 +338,7 @@ export async function deletePost(postId?: string, imageId?: string) {
 }
 
 export async function getInfinitePosts({ pageParam }: { pageParam: number }) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const queries: any[] = [Query.orderDesc("$updatedAt"), Query.limit(3)];
 
   if (pageParam) {

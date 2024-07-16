@@ -18,7 +18,7 @@ import { Models } from "appwrite"
 import { useUserContext } from "@/context/AuthContext"
 
 import { useNavigate } from "react-router-dom"
-import { useCreatePost, useDeletePost, useUpdatePost } from "@/lib/react-query/queriesAndMutations"
+import { useCreatePost,  useUpdatePost } from "@/lib/react-query/queriesAndMutations"
 import { useToast } from "../ui/use-toast"
 
  

@@ -10,6 +10,7 @@ import Loader from "@/components/shared/Loader";
 
 export type SearchResultProps = {
   isSearchFetching: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   searchedPosts: any;
 };
 
@@ -98,7 +99,8 @@ const Explore = () => {
           <p className="text-light-4 mt-10 text-center w-full">End of posts</p>
         ) : (
           posts.pages.map((item, index) => (
-            <GridPostList key={`page-${index}`} posts={item.documents} />
+            item ?(
+            <GridPostList key={`page-${index}`} posts={item.documents} />):(<div></div>)
           ))
         )}
       </div>
