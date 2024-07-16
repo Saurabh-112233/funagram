@@ -19,7 +19,7 @@ const GridPostList = ({
   return (
     <div>
       {posts.length === 0 ? (
-        <p className=" mt-4 text-gray-500">Nothing posted yet!!</p>
+        <p className=" mt-4 text-gray-500">It feel's Light!!</p>
       ) : (
         <ul className="grid-container">
           {posts.map((post) => (
