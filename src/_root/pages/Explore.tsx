@@ -6,11 +6,11 @@ import useDebounce from "@/hooks/useDebounce";
 import  GridPostList from "@/components/shared/GridPostList";
 import { useGetPosts, useSearchPosts } from "@/lib/react-query/queriesAndMutations";
 import Loader from "@/components/shared/Loader";
-import { Models } from "appwrite";
+
 
 export type SearchResultProps = {
   isSearchFetching: boolean;
-  searchedPosts: Models.Document[];
+  searchedPosts: any;
 };
 
 const SearchResults = ({ isSearchFetching, searchedPosts }: SearchResultProps) => {

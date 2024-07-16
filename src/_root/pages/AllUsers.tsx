@@ -7,7 +7,7 @@ const AllUsers = () => {
   const {
     data: creators,
     isLoading: isUserLoading,
-    isError: isErrorCreators,
+    
   } = useGetUsers(10);
   // console.log(creators?.documents);
   return (
