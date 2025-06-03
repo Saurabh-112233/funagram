@@ -148,19 +148,27 @@ export async function uploadFile(file:File) {
 }
 
 export function getFilePreview(fileId:string) {
+
+    // try {
+    //     const fileUrl = storage.getFilePreview(
+    //         appwriteConfig.storageId,
+    //         fileId,
+    //         2000,
+    //         2000,
+    //         "top" as ImageGravity,
+    //         100,
+    //     )
+    //     return fileUrl;
+    // } catch (error) {
+    //     console.log(error)
+    // }
+
     try {
-        const fileUrl = storage.getFilePreview(
-            appwriteConfig.storageId,
-            fileId,
-            2000,
-            2000,
-            "top" as ImageGravity,
-            100,
-        )
-        return fileUrl;
-    } catch (error) {
-        console.log(error)
-    }
+  const fileUrl = storage.getFileView(appwriteConfig.storageId, fileId);
+  return fileUrl;
+} catch (error) {
+  console.log(error);
+}
 }
 
 export async function deleteFile(fileId:string){
